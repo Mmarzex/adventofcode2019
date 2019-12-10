@@ -9,6 +9,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install bundler
+          command: gem install bundler:2.0.2
+      - run:
           name: Which Bundler?
           command: bundle -v
       - restore_cache:
