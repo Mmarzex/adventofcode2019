@@ -10,7 +10,7 @@ jobs:
       - checkout
       - run:
           name: Install rspec
-          command: gem install rspec
+          command: gem install rspec rspec_junit_formatter
 #      - run:
 #          name: Which Bundler?
 #          command: bundle -v
@@ -28,4 +28,6 @@ jobs:
 #            - vendor/bundle
       - run:
           name: Run Tests
-          command: rspec --format doc
+          command: rspec --format RspecJunitFormatter --out test_results/rspec.xml
+      - store_test_results:
+          path: test_results
