@@ -21,6 +21,8 @@ jobs:
 
       - save_cache:
           key: adventofcode2019-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run:
           name: Run Tests
           command: bundle exec rspec --format doc
