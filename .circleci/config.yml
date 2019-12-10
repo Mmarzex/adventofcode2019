@@ -20,7 +20,7 @@ jobs:
             - adventofcode2019-
       - run:
           name: Bundle Install
-          command: bundle check --path vendor/bundle || bundle install --deployment
+          command: bundle check --path vendor/bundle || bundle install
 
       - save_cache:
           key: adventofcode2019-{{ checksum "Gemfile.lock" }}
