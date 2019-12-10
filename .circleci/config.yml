@@ -1,25 +1,26 @@
 version: 2.1
 jobs:
-  docker:
-    - image: circleci/ruby:2.6.5
-      environment:
-        BUNDLE_PATH: vendor/bundle
+  build:
+    docker:
+      - image: circleci/ruby:2.6.5
+        environment:
+          BUNDLE_PATH: vendor/bundle
 
-  steps:
-    - checkout
-    - run:
-        name: Which Bundler?
-        command: bundle -v
-    - restore_cache:
-        keys:
-          - adventofcode2019-{{ checksum "Gemfile.lock" }}
-          - adventofcode2019-
-    - run:
-        name: Bundle Install
-        command: bundle check --path vendor/bundle || bundle install --deployment
+    steps:
+      - checkout
+      - run:
+          name: Which Bundler?
+          command: bundle -v
+      - restore_cache:
+          keys:
+            - adventofcode2019-{{ checksum "Gemfile.lock" }}
+            - adventofcode2019-
+      - run:
+          name: Bundle Install
+          command: bundle check --path vendor/bundle || bundle install --deployment
 
-    - save_cache:
-        key: adventofcode2019-{{ checksum "Gemfile.lock" }}
-    - run:
-        name: Run Tests
-        command: bundle exec rspec --format doc
+      - save_cache:
+          key: adventofcode2019-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Run Tests
+          command: bundle exec rspec --format doc
