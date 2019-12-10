@@ -9,23 +9,23 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install bundler
-          command: gem install bundler:2.0.2
-      - run:
-          name: Which Bundler?
-          command: bundle -v
-      - restore_cache:
-          keys:
-            - adventofcode2019-{{ checksum "Gemfile.lock" }}
-            - adventofcode2019-
-      - run:
-          name: Bundle Install
-          command: bundle check --path vendor/bundle || bundle install
-
-      - save_cache:
-          key: adventofcode2019-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
+          name: Install rspec
+          command: gem install rspec
+#      - run:
+#          name: Which Bundler?
+#          command: bundle -v
+#      - restore_cache:
+#          keys:
+#            - adventofcode2019-{{ checksum "Gemfile.lock" }}
+#            - adventofcode2019-
+#      - run:
+#          name: Bundle Install
+#          command: bundle check --path vendor/bundle || bundle install
+#
+#      - save_cache:
+#          key: adventofcode2019-{{ checksum "Gemfile.lock" }}
+#          paths:
+#            - vendor/bundle
       - run:
           name: Run Tests
-          command: bundle exec rspec --format doc
+          command: rspec --format doc
